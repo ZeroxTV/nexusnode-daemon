@@ -1,0 +1,5 @@
+package cmanager
+
+func LoadAll() {
+
+}
