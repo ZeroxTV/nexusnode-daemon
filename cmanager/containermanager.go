@@ -1,5 +1,0 @@
-package cmanager
-
-func LoadAll() {
-
-}

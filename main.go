@@ -1,25 +1,30 @@
 package main
 
 import (
-	"docker.io/go-docker"
-	"context"
-	"docker.io/go-docker/api/types"
-	"fmt"
+	"nexusnode.de/nexusnode-daemon/util"
+	"nexusnode.de/nexusnode-daemon/dockerclient"
 )
 
 func main() {
-	cli, err := docker.NewEnvClient()
+	util.Log("###################################################")
+	util.Log("#             Nexusnode Panel Daemon              #")
+	util.Log("#                   Version 1.0                   #")
+	util.Log("###################################################\n")
+	util.Log("Checking for updates...")
 
-	if err != nil {
-		panic(err)
-	}
-	containers, err := cli.ContainerList(context.Background(), types.ContainerListOptions{All:true})
+	checkUpdates()
 
-	if err != nil {
-		panic(err)
-	}
+	util.Log("Connecting to docker installation...")
 
-	for _, container := range containers {
-		fmt.Printf("%s %s\n", container.ID[:10], container.Image)
-	}
+	dockerclient.ConnectToDocker()
+
+	util.Log("Successfully connected to a running docker installation")
+	util.Log("Checking out all containers...")
+
+	dockerclient.PrintAllContainers()
+}
+
+func checkUpdates() {
+	//TODO Checking for daemon, image and configuration updates
+	util.Log("No updates found")
 }
