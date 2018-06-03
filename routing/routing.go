@@ -1,6 +1,8 @@
 package routing
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 func startupWebServer() {
 	router := gin.Default()

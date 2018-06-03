@@ -3,6 +3,7 @@ package main
 import (
 	"nexusnode.de/nexusnode-daemon/util"
 	"nexusnode.de/nexusnode-daemon/dockerclient"
+	"nexusnode.de/nexusnode-daemon/servers"
 )
 
 func main() {
@@ -22,6 +23,8 @@ func main() {
 	util.Log("Checking out all containers...")
 
 	dockerclient.PrintAllContainers()
+	util.Log("")
+	servers.LoadAllServers()
 }
 
 func checkUpdates() {
